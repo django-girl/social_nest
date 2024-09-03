@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: social_nest_local_docs
+    container_name: social_nest_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./social_nest:/app/social_nest:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
